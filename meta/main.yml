@@ -1,7 +1,7 @@
 ---
 
 galaxy_info:
-  role_name: ginhouxnet.prometheus_keepalived_exporter
+  role_name: prometheus_keepalived_exporter
   description: install prometheus keepalived_exporter and configure prometheus keepalived_exporter
   author: dginhoux
   company: ginhouxnet
