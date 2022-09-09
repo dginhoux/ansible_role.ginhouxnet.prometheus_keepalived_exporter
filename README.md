@@ -1,4 +1,4 @@
-ginhouxnet.prometheus_keepalived_exporter
+Ansible Role : dginhoux.prometheus_keepalived_exporter
 =========
 
 This ansible role install, configure and uninstall prometheus keepalived exporter.
