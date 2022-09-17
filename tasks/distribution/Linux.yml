@@ -1,13 +1,13 @@
 ---
 - name: "install {{ prometheus_keepalived_exporter_name }}"
   block:
-    - include_tasks:
+    - ansible.builtin.include_tasks:
         file: tasks/sub-tasks/install_docker.yml
       when: deploy_keepalived_exporter_mode is defined
         and
         deploy_keepalived_exporter_mode == "docker"
 
-    - include_tasks:
+    - ansible.builtin.include_tasks:
         file: tasks/sub-tasks/install_binary.yml
       when: deploy_keepalived_exporter_mode is defined
         and
@@ -28,13 +28,13 @@
 
 - name: "uninstall {{ prometheus_keepalived_exporter_name }}"
   block:
-    - include_tasks:
+    - ansible.builtin.include_tasks:
         file: tasks/sub-tasks/uninstall_docker.yml
       when: deploy_keepalived_exporter_mode is defined
         and
         deploy_keepalived_exporter_mode == "docker"
 
-    - include_tasks:
+    - ansible.builtin.include_tasks:
         file: tasks/sub-tasks/uninstall_binary.yml
       when: deploy_keepalived_exporter_mode is defined
         and
