@@ -5,7 +5,11 @@ prometheus_keepalived_exporter_docker_image: registry-build.infra.ginhoux.net:50
 prometheus_keepalived_exporter_name: keepalived-exporter
 prometheus_keepalived_exporter_version: 1.2.0
 prometheus_keepalived_exporter_arch: amd64
-prometheus_keepalived_exporter_download_url: https://github.com/cafebazaar/keepalived-exporter/releases/download/v{{prometheus_keepalived_exporter_version}}/{{prometheus_keepalived_exporter_name}}-{{prometheus_keepalived_exporter_version}}.linux-{{prometheus_keepalived_exporter_arch}}.zip
+prometheus_keepalived_exporter_download_url: >-
+  https://github.com/cafebazaar/keepalived-exporter/releases/
+  download/v{{prometheus_keepalived_exporter_version}}/
+  {{prometheus_keepalived_exporter_name}}-{{prometheus_keepalived_exporter_version}}.
+  linux-{{prometheus_keepalived_exporter_arch}}.zip
 prometheus_keepalived_exporter_bin_path: /usr/local/bin/{{prometheus_keepalived_exporter_name}}
 prometheus_keepalived_exporter_options: ""
 prometheus_keepalived_exporter_state: started

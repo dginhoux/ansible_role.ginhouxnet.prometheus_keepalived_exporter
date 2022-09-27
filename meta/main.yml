@@ -2,7 +2,7 @@
 
 galaxy_info:
   role_name: prometheus_keepalived_exporter
-  description: install prometheus keepalived_exporter and configure prometheus keepalived_exporter
+  description: dginhoux.prometheus_keepalived_exporter
   author: Dany GINHOUX
   company: dginhoux
   license: MIT
