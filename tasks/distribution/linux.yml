@@ -1,45 +1,48 @@
 ---
-- name: "install {{ prometheus_keepalived_exporter_name }}"
+- name: Install keepalived_exporter
+  when:
+    - deploy_keepalived_exporter is defined
+    - deploy_keepalived_exporter == "install"
   block:
-    - ansible.builtin.include_tasks:
+    - name: Include tasks for docker install keepalived_exporter
+      when:
+        - deploy_keepalived_exporter_mode is defined
+        - deploy_keepalived_exporter_mode == "docker"
+      ansible.builtin.include_tasks:
         file: tasks/sub-tasks/install_docker.yml
-      when: deploy_keepalived_exporter_mode is defined
-        and
-        deploy_keepalived_exporter_mode == "docker"
 
-    - ansible.builtin.include_tasks:
+    - name: Include tasks for binary install keepalived_exporter
+      when:
+        - deploy_keepalived_exporter_mode is defined
+        - deploy_keepalived_exporter_mode == "binary"
+      ansible.builtin.include_tasks:
         file: tasks/sub-tasks/install_binary.yml
-      when: deploy_keepalived_exporter_mode is defined
-        and
-        deploy_keepalived_exporter_mode == "binary"
 
-    - name: "verify {{ prometheus_keepalived_exporter_name }} is responding to requests"
-      uri:
-        url: http://127.0.0.1:{{ prometheus_keepalived_exporter_port }}/
-        return_content: true
+    - name: Verify keepalived_exporter is responding to requests
       register: metrics_output
       failed_when: "'Metrics' not in metrics_output.content"
       retries: 6
       delay: 60
+      ansible.builtin.uri:
+        url: http://127.0.0.1:{{ prometheus_keepalived_exporter_port }}/
+        return_content: true
 
-  when: deploy_keepalived_exporter is defined
-    and
-    deploy_keepalived_exporter == "install"
 
-- name: "uninstall {{ prometheus_keepalived_exporter_name }}"
+- name: Uninstall keepalived_exporter
+  when:
+    - deploy_keepalived_exporter is defined
+    - deploy_keepalived_exporter == "uninstall"
   block:
-    - ansible.builtin.include_tasks:
+    - name: Include tasks for docker uninstall keepalived_exporter
+      when:
+        - deploy_keepalived_exporter_mode is defined
+        - deploy_keepalived_exporter_mode == "docker"
+      ansible.builtin.include_tasks:
         file: tasks/sub-tasks/uninstall_docker.yml
-      when: deploy_keepalived_exporter_mode is defined
-        and
-        deploy_keepalived_exporter_mode == "docker"
 
-    - ansible.builtin.include_tasks:
+    - name: Include tasks for binary uninstall keepalived_exporter
+      when:
+        - deploy_keepalived_exporter_mode is defined
+        - deploy_keepalived_exporter_mode == "binary"
+      ansible.builtin.include_tasks:
         file: tasks/sub-tasks/uninstall_binary.yml
-      when: deploy_keepalived_exporter_mode is defined
-        and
-        deploy_keepalived_exporter_mode == "binary"
-
-  when: deploy_keepalived_exporter is defined
-    and
-    deploy_keepalived_exporter == "uninstall"

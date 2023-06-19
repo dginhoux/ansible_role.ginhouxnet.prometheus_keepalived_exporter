@@ -1,12 +1,12 @@
 ---
-- name: stop keepalived_exporter container
+- name: Stop keepalived_exporter container
+  ignore_errors: true
   community.docker.docker_container:
     name: keepalived_exporter
     state: stopped
-  ignore_errors: true
 
-- name: remove keepalived_exporter container
+- name: Remove keepalived_exporter container
+  ignore_errors: true
   community.docker.docker_container:
     name: keepalived_exporter
     state: absent
-  ignore_errors: true

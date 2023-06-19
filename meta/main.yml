@@ -1,5 +1,4 @@
 ---
-
 galaxy_info:
   role_name: prometheus_keepalived_exporter
   description: dginhoux.prometheus_keepalived_exporter
@@ -28,6 +27,5 @@ galaxy_info:
     - prometheus
     - keepalived
     - exporter
-
 
 dependencies: []
